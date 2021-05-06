@@ -1,20 +1,14 @@
 #include "get_next_line.h"
 
+#include <stdio.h>
+
 static char	*ft_strjoin_and_free(char *s1, char *s2)
 {
-	size_t	totsize;
 	char	*new_s;
 
-	totsize = ft_strlen(s1) + ft_strlen(s2);
-	new_s = malloc(sizeof(char) * (totsize + 1));
-	if (!new_s)
-		new_s = NULL;
-	else
-	{
-		new_s[0] = 0;
-		ft_strlcpy(new_s, s1, totsize + 1);
-		ft_strlcat(new_s, s2, totsize + 1);
-	}
+	if (!s1)
+		return(ft_strdup(s2));
+	new_s = ft_strjoin(s1, s2);
 	if (s1)
 	{
 		free(s1);
@@ -34,7 +28,8 @@ int read_from_save(char **save, char **line)
 		reading = 1;
 	else
 		*new_save = 0;
-	*line = ft_strdup(*save);
+	if (*save)
+		*line = ft_strdup(*save);
 	if (new_save)
 		new_save = ft_strdup(new_save + 1);
 	if (*save)

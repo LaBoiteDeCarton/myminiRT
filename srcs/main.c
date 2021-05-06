@@ -1,28 +1,26 @@
-#include <mlx.h>
 #include <stdlib.h>
-#include "read_file.h"
-#include "struct.h"
+#include "mlx.h"
+#include "handle_errors.h"
+#include "parse.h"
 
-int	main(int ac, char **av)
+int main(int ac, char **av)
 {
-	void *mlx_ptr;
-	void *my_screen;
-	t_scene *myscene;
+	t_rt *rt;
 
-	myscene = malloc(sizeof(t_scene));
-	if (ac == 2)
-	{
-		read_file(av[1], myscene);
-	}
-	mlx_ptr = mlx_init();
-	if (mlx_ptr)
-	{
-		my_screen = mlx_new_window(mlx_ptr, myscene->resolution.x, myscene->resolution.y, "première fenetre");
-		if (my_screen)
-		{
-			mlx_loop(my_screen);
-		}
-	}
-	free(myscene);
-	return (0);
+	rt = rt_new();
+	if (ac == 1)
+		handle_error(ERR_ARGUMENTMISSING, rt);
+	if (ac > 3)
+		handle_error(ERR_TOOMUCHARGUMENT, rt);
+	if (ac == 3)
+		rt_addflag(av[2], rt);
+	parse_file(av[1], rt);
+	printf("Check for Resolution\n");
+	printf("Resolution : (x,y) - (%d,%d)\n", rt->resolution.x, rt->resolution.y);
+	printf("Check for Ambient Light\n");
+	printf("Ambience light : (ratio) - (%f)\n", rt->ambience.ratio);
+	printf("Ambient color : (r,g,b) - (%d,%d,%d)\n", rt->ambience.color->r, rt->ambience.color->g, rt->ambience.color->b);
+	// rt_start(rt);
+	// rt_delete(rt);
+	return (1);
 }

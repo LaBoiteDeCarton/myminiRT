@@ -2,6 +2,7 @@
 # define STRUCT_H
 # include "libft.h"
 # include "ft_str_utils.h"
+# include "mlx.h"
 
 typedef struct s_coord		t_coord;
 typedef struct s_color		t_color;
@@ -13,6 +14,7 @@ typedef struct s_triangle	t_triangle;
 typedef struct s_plan		t_plan;
 typedef struct s_objet		t_objet;
 typedef struct s_resolution	t_resolution;
+typedef struct s_camera		t_camera;
 
 typedef enum e_objtype
 {
@@ -49,23 +51,23 @@ struct s_color
 
 struct s_camera
 {
-	t_coord position;
+	t_coord *position;
 	t_vector vector;
 	short int fov;
 };
 
 struct s_sphere
 {
-	t_coord position;
-	int diam;
+	t_coord *position;
+	float diam;
 };
 
 struct s_cylindre
 {
-	t_coord position;
+	t_coord *position;
 	t_vector vector;
-	unsigned int diam;
-	unsigned int height;
+	float diam;
+	float height;
 };
 
 struct s_triangle
@@ -75,7 +77,7 @@ struct s_triangle
 
 struct s_plan
 {
-	t_coord position;
+	t_coord *position;
 	t_vector vector;
 };
 
@@ -95,9 +97,12 @@ struct s_resolution
 struct s_scene
 {
 	t_resolution resolution;
-	t_objet *objets;
+	t_list *cams;
+	t_list *objets;
 };
 
-void	add_to_scene(char *line, t_scene *scene);
+void	complete_default_scene(t_scene *scene);
+void	put_scene(void *mlx_ptr, void *mlx_win, t_scene *scene);
+void	delete_scene(t_scene *scene);
 
 #endif

@@ -1,13 +1,16 @@
 NAME = miniRT
 S_DIR = srcs
 H_DIR = include
-SRCS = srcs/main.c \
-		srcs/get_next_line.c \
-		srcs/struct.c \
-		srcs/read_file.c \
-		srcs/ft_str_utils.c
+SRCS_FILES = main.c \
+		get_next_line.c \
+		handle_errors.c \
+		rt.c \
+		parse.c \
+		ft_stris.c \
+		ft_atof.c
+SRCS = $(addprefix ${S_DIR}/, ${SRCS_FILES})
 OBJS = ${SRCS:.c=.o}
-FLAGS = -Wall -Wextra -Werror -Iinclude
+FLAGS = -Wall -Wextra -Werror -I${H_DIR}
 MLX = lib/minilibx_opengl
 LFT = lib/libft
 LIBFLAGS = -Llib/libft -lft -Llib/minilibx_opengl -lmlx -framework OpenGL -framework AppKit
@@ -19,7 +22,7 @@ LIBFLAGS = -Llib/libft -lft -Llib/minilibx_opengl -lmlx -framework OpenGL -frame
 ${NAME}: ${OBJS}
 	make -C ${LFT}
 	make -C ${MLX}
-	gcc ${FLAGS} ${OBJS} ${LIBFLAGS} -o ${NAME}
+	gcc ${FLAGS} ${LIBFLAGS} ${OBJS} -o ${NAME}
 
 all: ${NAME}
 
