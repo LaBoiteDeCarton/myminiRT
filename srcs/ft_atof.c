@@ -5,17 +5,13 @@
 double ft_atof(char *str)
 {
 	double	res;
-	int		neg;
 	int		d_rng;
 
-	res = 0;
-	neg = 0;
-	res += ft_atoi(str);
+	res = ft_atoi(str);
 	str = ft_strchr(str, '.');
 	if (str)
 	{
 		str++;
-		printf("le if ok\n");
 		d_rng = 1;
 		while (ft_isdigit(*str))
 		{
@@ -24,7 +20,5 @@ double ft_atof(char *str)
 			d_rng++;
 		}
 	}
-	if (neg)
-		res = -res;
 	return (res);
 }

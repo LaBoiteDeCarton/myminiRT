@@ -10,5 +10,7 @@ int		ft_striscolor(char *str);
 int 	ft_striscoord(char *str);
 int 	ft_strisint(char *str);
 double	ft_atof(char *str);
+void 	free_tabchar(char **tabchar);
+int 	tabchar_len(char **tabchar);
 
 #endif

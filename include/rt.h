@@ -6,8 +6,10 @@ typedef struct s_rt			t_rt;
 typedef struct s_color		t_color;
 typedef struct s_coord		t_coord;
 typedef struct s_vect		t_vect;
+typedef struct s_parse		t_parse;
 typedef struct s_resolution	t_resolution;
 typedef struct s_ambience	t_ambience;
+typedef struct s_camera		t_camera;
 typedef struct s_obj		t_obj;
 typedef struct s_plan		t_plan;
 
@@ -44,6 +46,14 @@ struct s_vect
 	double z;
 };
 
+struct s_parse
+{
+	int f_line;
+	char *line;
+	char **spsplit;
+	char **cmsplit;
+};
+
 struct s_resolution
 {
 	int x;
@@ -53,9 +63,15 @@ struct s_resolution
 struct s_ambience
 {
 	double ratio;
-	t_color *color;
+	t_color color;
 };
 
+struct s_camera
+{
+	t_coord coord;
+	t_vect orient;
+	int fov;
+};
 
 struct s_rt
 {
@@ -64,17 +80,19 @@ struct s_rt
 	t_ambience ambience;
 	t_list *cams;
 	t_list *objs;
+	t_parse parse;
 };
 
 struct s_plan
 {
 	t_color *color;
 	t_typeobj type;
-	t_coord position;
+	t_coord coord;
 	t_vect ortogonal;
 };
 
 t_rt *rt_new();
+void free_parse(t_rt *rt);
 void rt_start(t_rt *rt);
 void rt_delete(t_rt *rt);
 void rt_addflag(char *flag, t_rt *rt);

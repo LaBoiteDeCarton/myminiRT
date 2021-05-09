@@ -7,7 +7,8 @@ SRCS_FILES = main.c \
 		rt.c \
 		parse.c \
 		ft_stris.c \
-		ft_atof.c
+		ft_atof.c \
+		tabchar.c
 SRCS = $(addprefix ${S_DIR}/, ${SRCS_FILES})
 OBJS = ${SRCS:.c=.o}
 FLAGS = -Wall -Wextra -Werror -I${H_DIR}

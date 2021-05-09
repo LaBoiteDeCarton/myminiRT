@@ -19,6 +19,8 @@ int ft_strisfloat(char *str)
 
 	if (!str)
 		return (0);
+	if (*str == '-' || *str == '+')
+		str++;
 	if (!ft_isdigit(*str))
 		return (0);
 	str++;

@@ -13,11 +13,13 @@
 # define ERR_READINGFILEERROR "error while reading file : read(fd, buff, BUFFER_SIZE)"
 # define ERR_MALLOC "memory allocation failed"
 # define ERR_WRONGFLAGARG "wrong argument <flags> in : miniRT <file-path> <flags>"
-# define ERR_RTWICE "file argument error : only one R(resolution) authorized"
-# define ERR_ATWICE "file argument error : only one A(ambience) authorized"
-# define ERR_RINVARGS "file argument error for resolution, usage : R <int:width> <int:height>"
-# define ERR_AINVARGS "file argument error for ambience, usage : A <double:ratio> <int,int,int:color>"
-# define ERR_CINVARGS "file argument error for camera, usage : c <double,double,double:coord> <double,double,double:vect> <int:FOV>"
+# define ERR_RTWICE "argument error : only one R(resolution) authorized"
+# define ERR_ATWICE "argument error : only one A(ambience) authorized"
+# define ERR_RINVARGS "argument error for resolution, usage : R <int:width> <int:height>"
+# define ERR_AINVARGS "argument error for ambience, usage : A <double:ratio> <int,int,int:color>"
+# define ERR_CINVARGS "argument error for camera, usage : c <double,double,double:coord> <double,double,double:vect> <int:FOV>"
+# define ERR_INVID "invalid identifier, identifier available: R A c l pl sp sq cy tr"
+# define ERR_INVLINE "invalid line, usage : R <int:width> <int:height>\n\tA <double:ratio> <int,int,int:color>\n\tc <double,double,double:coord> <double,double,double:vect> <int:FOV>\n\t"
 
 void handle_error(char *err, t_rt *rt);
 
